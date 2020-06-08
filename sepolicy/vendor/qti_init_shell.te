@@ -1,0 +1,12 @@
+dontaudit qti_init_shell self:capability { dac_override dac_read_search };
+allow qti_init_shell wifi_vendor_data_file:dir rw_dir_perms;
+allow qti_init_shell wifi_vendor_data_file:file rw_file_perms;
+#PE below
+allow qti_init_shell configfs:dir write;
+allow qti_init_shell sysfs_usbpd_device:file setattr;
+
+# media_sm6150_version_prop - to choose target version specific media_codecs.xml
+allow qti_init_shell {
+    vendor_media_sm6150_version_prop
+    vendor_chre_enabled_prop
+}:property_service set;
